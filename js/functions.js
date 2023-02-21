@@ -1,24 +1,18 @@
 // Функция проверки длинны строки.
 function getLengthString (string, length) {
-  if (string.length <= length) {
-    return true;
-  }
-  return false;
+  return string.length <= length;
 }
-getLengthString ('Функция для проверки, является ли строка палиндромом', 45); //false
+getLengthString('Функция для проверки, является ли строка палиндромом', 45); //false
 
 //Функция для проверки, является ли строка палиндромом.
 function getPalynodrome (word) {
   word = word.toLowerCase();
   word = word.replaceAll(' ', '');
   for (let i = 1; i <= word.length / 2; i++) {
-    if (word[i - 1] === word[word.length - i]) {
-      return true;
-    }
-    return false;
+    return word[i - 1] === word[word.length - i];
   }
 }
-getPalynodrome ('Лёша на полке клопа нашёл ');
+getPalynodrome('Лёша на полке клопа нашёл ');
 
 /* Функция, которая принимает строку, извлекает содержащиеся в ней цифры от 0 до 9
 и возвращает их в виде целого положительного числа. Если в строке нет ни одной цифры,
@@ -32,7 +26,7 @@ function getNumber (string) {
   return parseInt(string, 10);
 }
 
-getNumber ('текст 666 текст'); //getNumber (-9.999); (тоже работает =) )
+getNumber('текст 666 текст'); //getNumber (-9.999); (тоже работает =) )
 
 /* Функция, которая принимает три параметра:
 исходную строку, минимальную длину и строку
@@ -59,4 +53,4 @@ function getOriginalString(stringOriginal, length, stringAdditional) {
   return total + stringOriginal;
 }
 
-getOriginalString ('q', 4, 'we'); //"wweq"
+getOriginalString('q', 4, 'we'); //"wweq"
