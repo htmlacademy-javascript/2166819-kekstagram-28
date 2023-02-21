@@ -41,3 +41,22 @@ getNumber ('текст 666 текст'); //getNumber (-9.999); (тоже раб�
 Символы добавляются в начало строки. Если исходная строка превышает заданную длину,
 она не должна обрезаться. Если «добивка» слишком длинная, она обрезается с конца. */
 
+function getOriginalString (stringOriginal, length, stringAdditional) {
+  if (stringOriginal.length >= length) {
+    return stringOriginal;
+  }
+  let subtotal = '';
+  let total = '';
+  let remainder = length - stringOriginal.length;
+   while (total.length !== remainder) {
+    subtotal = stringAdditional + total;
+    if (subtotal.length <= remainder) {
+      total =  subtotal;
+    }
+    total = stringAdditional.slice (0, remainder - total.length) + total;
+    break;
+   }
+   return total + stringOriginal;
+}
+
+getOriginalString ('q', 4, 'we'); //"wweq"
