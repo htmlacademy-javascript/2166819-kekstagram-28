@@ -1,19 +1,69 @@
-/* createPhotoDescription Обьект состоит из 5 ключей:
-1. id, число — идентификатор опубликованной фотографии.
-Это число от 1 до 25. Идентификаторы не должны повторяться.
-2. url, строка — адрес картинки вида photos/{{i}}.jpg, где {{i}} — это число от 1 до 25. Адреса картинок не должны повторяться.
-3. description, строка — описание фотографии.
-4. likes, число — количество лайков, поставленных фотографии.Случайное число от 15 до 200.
+//Константы
+// 1. Максимальное и минимальное значение индефикатора
+const MIN_ID = 1;
+const MAX_ID = 25;
 
-5. comments, массив объектов — список комментариев, оставленных другими пользователями к этой фотографии.
-Количество комментариев к каждой фотографии вы определяете на своё усмотрение. Все комментарии генерируются случайным образом.
-comments = [
-  5.1. id — любое число. Идентификаторы не должны повторяться.
-  5.2. avatar — это строка, значение которой формируется по правилу img/avatar-{{случайное число от 1 до 6}}.svg. Аватарки подготовлены в директории img.
-  5.3. message — Для формирования текста комментария вам необходимо взять одно или два случайных предложения из представленных ниже:
-  5.4. name — Имена авторов также должны быть случайными.
-]
-*/
+// 2. Максимальное и минимальное значение для адреса картинки
+const MIN_URL = 1;
+const MAX_URL = 25;
+
+// 3. Описание фотографии
+const DESCRIPTIONS = [
+  'Некоторые дни начинаются лучше остальных.',
+  'Сегодня в моей душе солнце.',
+  'Если ты ищешь того человека, который изменит твою жизнь, просто возьми и посмотри в зеркало.',
+  'Красота лишь привлекает внимание, душа – завоевывает сердце.',
+  'Все, что мы отдаем, возвращается вновь.',
+  'Цени моменты.',
+  'Улыбайся больше, смейся чаще.',
+  'Счастье никогда не выйдет из моды.',
+  'Они говорили мне, что я не смогу, поэтому я это сделала.'
+];
+
+// 4. Максимальное и минимальное значение для лайков
+const MIN_LIKES = 15;
+const MAX_LIKES = 200;
+
+//5. Максимальное и минимальное число комментариев
+const MIN_COMMENT = 1;
+const MAX_COMMENT = 5;
+
+// 5.1. Максимальное и минимальное значение случайного числа
+const MIN_COMMENT_ID = 0;
+const MAX_COMMENT_ID = 47389;
+
+// 5.4. Максимальное и минимальное значение для аватарки
+const MIN_COMMENT_AVATAR = 1;
+const MAX_COMMENT_AVATAR = 6;
+
+// 5.4. Комментарий к фотографии
+const MESSANGES = [
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
+];
+
+// 5.4. Имя авторов коментариев
+const NAMES = [
+  'Глеб Калинин',
+  'Тимур Латышев',
+  'Ксения Попова',
+  'Максим Иванов',
+  'Елизавета Овчинникова',
+  'Елисей Зайцев',
+  'Тимур Котов',
+  'Даниил Зверев',
+  'Александр Смирнов',
+  'Максим Золотарев',
+  'Савелий Захаров',
+  'Есения Полякова'
+];
+
+//Количество операций
+const COUNT_DESCRIPTIONS = 25;
 
 // Генерация случайного числа в диатазоне (min, max)
 function getRandomInteger (min, max) {
@@ -46,91 +96,33 @@ function getRandomArrayElement (elements) {
 }
 
 // 1. идентификатор опубликованной фотографии publishedPhotoId
-const minId = 1;
-const maxId = 25;
-const publishedPhotoId = createRandomIdFromRangeGenerator(minId, maxId);
+const publishedPhotoId = createRandomIdFromRangeGenerator(MIN_ID, MAX_ID);
 
 // 2. url, строка — адрес картинки
-const minUrl = 1;
-const maxUrl = 25;
-const photoUrlId = createRandomIdFromRangeGenerator(minUrl, maxUrl);
-
-//3. description, строка — описание фотографии.
-
-const descriptions = [
-  'Некоторые дни начинаются лучше остальных.',
-  'Сегодня в моей душе солнце.',
-  'Если ты ищешь того человека, который изменит твою жизнь, просто возьми и посмотри в зеркало.',
-  'Красота лишь привлекает внимание, душа – завоевывает сердце.',
-  'Все, что мы отдаем, возвращается вновь.',
-  'Цени моменты.',
-  'Улыбайся больше, смейся чаще.',
-  'Счастье никогда не выйдет из моды.',
-  'Они говорили мне, что я не смогу, поэтому я это сделала.'
-];
-//getRandomArrayElement (descriptions);
-
-//4. likes, число — количество лайков, поставленных фотографии.Случайное число от 15 до 200
-const minLikes = 15;
-const maxLikes = 200;
+const photoUrlId = createRandomIdFromRangeGenerator(MIN_URL, MAX_URL);
 
 //5.1. id — любое число.
-const minCommentId = 0;
-const maxCommentId = 47389; //не понятно как узнать число без ограничений
-const commentPhotoId = createRandomIdFromRangeGenerator (minCommentId, maxCommentId);
-
-//5.2. avatar — это строка, значение которой формируется по правилу img/avatar-{{случайное число от 1 до 6}}.svg. Аватарки подготовлены в директории img.
-const minCommentAvatar = 1;
-const maxCommentAvatar = 6;
-
-//5.3. message — Для формирования текста комментария вам необходимо взять одно или два случайных предложения.
-
-const messages = [
-  'Всё отлично!',
-  'В целом всё неплохо. Но не всё.',
-  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
-];
-
-//5.4. name — Имена авторов
-
-const names = [
-  'Глеб Калинин',
-  'Тимур Латышев',
-  'Ксения Попова',
-  'Максим Иванов',
-  'Елизавета Овчинникова',
-  'Елисей Зайцев',
-  'Тимур Котов',
-  'Даниил Зверев',
-  'Александр Смирнов',
-  'Максим Золотарев',
-  'Савелий Захаров',
-  'Есения Полякова'
-];
+const commentPhotoId = createRandomIdFromRangeGenerator (MIN_COMMENT_ID, MAX_COMMENT_ID);
 
 // Обьеденение всех элементов в обьект
 
-function createPhotoDescription () {
-  function createComments () {
-    return {
-      idСomments: commentPhotoId(),
-      avatarСomments: `img/avatar-${getRandomInteger (minCommentAvatar, maxCommentAvatar)}.svg`,
-      messageСomments: getRandomArrayElement (messages),
-      nameСomments: getRandomArrayElement (names),
-    };
-  }
-  const commentsArray = Array.from({length: 25}, createComments);
-
+function createComments () {
   return {
-    id: publishedPhotoId(),
-    url: `photos/${photoUrlId()}.jpg`,
-    description: getRandomArrayElement (descriptions),
-    likes: getRandomInteger (minLikes, maxLikes),
-    comments: commentsArray
+    id: commentPhotoId(),
+    avatar: `img/avatar-${getRandomInteger (MIN_COMMENT_AVATAR, MAX_COMMENT_AVATAR)}.svg`,
+    message: getRandomArrayElement (MESSANGES),
+    name: getRandomArrayElement (NAMES),
   };
 }
 
-Array.from({length: 2}, createPhotoDescription);
+function createPhotoDescription () {
+  const countDescriptionComments = getRandomInteger (MIN_COMMENT, MAX_COMMENT);
+  return {
+    id: publishedPhotoId(),
+    url: `photos/${photoUrlId()}.jpg`,
+    description: getRandomArrayElement (DESCRIPTIONS),
+    likes: getRandomInteger (MIN_LIKES, MAX_LIKES),
+    comments: Array.from({length: countDescriptionComments}, createComments)
+  };
+}
+Array.from({length: COUNT_DESCRIPTIONS}, createPhotoDescription);
