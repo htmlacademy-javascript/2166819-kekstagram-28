@@ -4,6 +4,9 @@ const picturesContainer = document.querySelector('.pictures');
 import {createPhotoDescriptionArray} from './data.js';
 const generatedPictureByNumber = createPhotoDescriptionArray();
 
+//Вставка элементов через DocumentFragment
+const similarListFragment = document.createDocumentFragment();
+
 generatedPictureByNumber.forEach(({likes, comments, url}) => {
   //Создание кории блока template picture
   const pictureElement = template.cloneNode(true);
@@ -15,7 +18,9 @@ generatedPictureByNumber.forEach(({likes, comments, url}) => {
   //3. likes
   pictureElement.querySelector('.picture__likes').textContent = likes;
   //Вставляем полученное изображение в конец блока
-  picturesContainer.appendChild(pictureElement);
+  similarListFragment.appendChild(pictureElement);
 });
+
+picturesContainer.appendChild(similarListFragment);
 
 export {generatedPictureByNumber};
