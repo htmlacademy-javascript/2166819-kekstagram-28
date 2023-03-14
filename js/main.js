@@ -1,2 +1,3 @@
-import {createPhotoDescriptionArray} from './data.js';
-createPhotoDescriptionArray();
+import {generatedPictureByNumber} from './miniature.js';
+generatedPictureByNumber();
+
