@@ -1,8 +1,8 @@
-const template = document.querySelector('#picture').content;
-const picturesContainer = document.querySelector('.pictures');
-
 import {createPhotoDescriptionArray} from './data.js';
 const generatedPictureByNumber = createPhotoDescriptionArray();
+
+const template = document.querySelector('#picture').content;
+const picturesContainer = document.querySelector('.pictures');
 
 //Вставка элементов через DocumentFragment
 const similarListFragment = document.createDocumentFragment();
