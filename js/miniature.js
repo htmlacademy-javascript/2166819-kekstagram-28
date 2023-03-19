@@ -6,7 +6,7 @@ const similarListFragment = document.createDocumentFragment();
 
 const generatedPicture = (data) => {
   data.forEach(({likes, comments, url, id}) => {
-  //Создание кории блока template picture
+  //Создание копии блока template picture
     const pictureElement = template.cloneNode(true);
     //В сконированном элементе ищем поля для вставки атрибутов
     //1. url
