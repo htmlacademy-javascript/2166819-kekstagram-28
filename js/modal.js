@@ -1,14 +1,24 @@
 import {generatedComment} from './comment.js';
+import {isEscapeKey} from './util.js';
 const body = document.body;
 const userModalBigPicture = document.querySelector('.big-picture');
 const picturesContainer = document.querySelector('.pictures');
+
 //Кнопка закрытия модального окна
 const cancel = document.querySelector('.big-picture__cancel');
+
 //Добавление переменный для блока с комментариями к изображению
 const socialComments = document.querySelector('.social__comments');
 const socialCommentsСount = document.querySelector('.social__comment-count');
 const commentsLoader = document.querySelector('.comments-loader');
 
+//Переменная для удаления обработчика событий
+const onDocumentKeydown = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeUserModal();
+  }
+};
 
 const show = (data) => {
   userModalBigPicture.classList.remove('hidden');
@@ -38,13 +48,16 @@ const show = (data) => {
     body.classList.remove('modal-open');
   });
 
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      userModalBigPicture.classList.add('hidden');
-      body.classList.remove('modal-open');
-    }
-  });
+  //Закрытие окна на кнопку Escape
+  document.addEventListener('keydown', onDocumentKeydown);
 };
+
+//Обьявление декларативной функции closeUserModal, чтобы заработал removeEventListener
+function closeUserModal () {
+  userModalBigPicture.classList.add('hidden');
+  document.removeEventListener('keydown', onDocumentKeydown);
+  body.classList.remove('modal-open');
+}
 
 const openBigPicture = (picture) => {
   picturesContainer.addEventListener('click', (evt) => {
