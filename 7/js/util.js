@@ -29,4 +29,7 @@ function getRandomArrayElement (elements) {
   return elements[getRandomInteger(0, elements.length - 1)];
 }
 
-export {getRandomArrayElement, createRandomIdFromRangeGenerator, getRandomInteger};
+// Кнопка Escape
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export {getRandomArrayElement, createRandomIdFromRangeGenerator, getRandomInteger, isEscapeKey};
