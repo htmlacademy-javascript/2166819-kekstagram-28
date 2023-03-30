@@ -5,7 +5,6 @@ const uploadOverlay = document.querySelector('.img-upload__overlay');
 const body = document.body;
 const uploadFile = document.querySelector('#upload-file');
 const closeOverlayButton = document.querySelector('#upload-cancel');
-//const uploadSubmit = document.querySelector('#upload-submit');
 //Поле для хештегов
 const textNewHashtags = document.querySelector('.text__hashtags');
 //Поле для комментария
@@ -59,11 +58,10 @@ const show = () => {
   validatetag();
 
   const formSubmit = (evt) => {
-    pristine.value();
     evt.preventDefault();
   };
 
-  form.addEventListener('submit', formSubmit);
+  form.addEventListener('sibmit', formSubmit);
 };
 
 //Обьявление декларативной функции closeOverlay, чтобы заработал removeEventListener
