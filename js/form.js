@@ -56,12 +56,6 @@ const show = () => {
   });
 
   validatetag();
-
-  const formSubmit = (evt) => {
-    evt.preventDefault();
-  };
-
-  form.addEventListener('sibmit', formSubmit);
 };
 
 //Обьявление декларативной функции closeOverlay, чтобы заработал removeEventListener
