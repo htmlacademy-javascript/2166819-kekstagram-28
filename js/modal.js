@@ -42,6 +42,7 @@ const show = (data) => {
   //Отмена прокрутки контейнера с фотографиями на заднем фоне
   body.classList.add('modal-open');
 
+  //Закрытие модального окна
   cancel.addEventListener('click', (evt) => {
     evt.preventDefault();
     userModalBigPicture.classList.add('hidden');
@@ -66,6 +67,7 @@ const openBigPicture = (picture) => {
       return;
     }
 
+    //evt.preventDefault();
     const picturesImg = picture.find(
       (item) => item.id === Number(picturesWindow.dataset.pictureId)
     );
