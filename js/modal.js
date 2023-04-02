@@ -67,7 +67,6 @@ const openBigPicture = (picture) => {
       return;
     }
 
-    //evt.preventDefault();
     const picturesImg = picture.find(
       (item) => item.id === Number(picturesWindow.dataset.pictureId)
     );
