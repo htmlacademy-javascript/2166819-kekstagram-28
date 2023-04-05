@@ -6,7 +6,7 @@ const buttonPlus = document.querySelector('.scale__control--bigger');
 const scaleValue = document.querySelector('.scale__control--value');
 
 //Загружаемое изображение
-const uploadImage = document.querySelector('.img-upload__preview');
+const uploadImage = document.querySelector('.img-upload__preview  img');
 
 //Шаг
 const STEP = 25;
