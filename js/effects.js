@@ -59,9 +59,7 @@ const effectsList = document.querySelector('.effects__list');
 const effectLevelValue = document.querySelectorAll('.effect-level__value');
 
 //Изменение фильтра от положения ползунка
-const updateSlider = () => {
-  const currentEffectId = uploadImage.id;
-  const currentEffect = EFFECTS[currentEffectId];
+const updateSlider = (currentEffect) => {
   effectLevelConteiner.noUiSlider.updateOptions({
     range: {
       min: currentEffect['min'],
@@ -86,7 +84,7 @@ const onFilterChange = (evt) => {
   } else {
     effectLevel.classList.remove('hidden');
     uploadImage.style.filter = `currentEffect['style'](${currentEffect['max']}${currentEffect['dimension']})`;
-    updateSlider();
+    updateSlider(currentEffect);
   }
 };
 

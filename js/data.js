@@ -31,7 +31,7 @@ const MAX_LIKES = 200;
 
 //5. Максимальное и минимальное число комментариев
 const MIN_COMMENT = 1;
-const MAX_COMMENT = 20;
+const MAX_COMMENT = 25;
 
 // 5.1. Максимальное и минимальное значение случайного числа
 const MIN_COMMENT_ID = 0;
