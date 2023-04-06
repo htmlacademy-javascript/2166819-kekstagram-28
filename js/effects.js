@@ -55,51 +55,47 @@ const effectLevelConteiner = document.querySelector('.effect-level__slider');
 //Общий список эфектов
 const effectsList = document.querySelector('.effects__list');
 
-//Инпут радио
-const inputRadio = document.querySelectorAll('.effects__radio');
-
 //Уровень эфекта
 const effectLevelValue = document.querySelectorAll('.effect-level__value');
 
-const searchIdEffects = () => {
-  let x;
-  for (let i = 0; i < inputRadio.length; i++) {
-    if (inputRadio[i].checked) {
-      x = inputRadio[i].id;
-      return x;
-    }
-  }
+//Изменение фильтра от положения ползунка
+const updateSlider = () => {
+  const currentEffectId = uploadImage.id;
+  const currentEffect = EFFECTS[currentEffectId];
+  effectLevelConteiner.noUiSlider.updateOptions({
+    range: {
+      min: currentEffect['min'],
+      max: currentEffect['max'],
+    },
+    start: currentEffect['max'],
+    step: currentEffect['step'],
+  });
+  effectLevelConteiner.noUiSlider.set(currentEffect['max']);
 };
 
-const onFilterChange = () => {
-  const currentEffectId = searchIdEffects();
+const onFilterChange = (evt) => {
+  const currentEffectId = evt.target.id;
   const currentEffect = EFFECTS[currentEffectId];
+
+  uploadImage.style.filter = currentEffect['style'];
+  uploadImage.className = currentEffect['class'];
+  uploadImage.id = currentEffectId;
+
   if (currentEffectId === 'effect-none') {
     effectLevel.classList.add('hidden');
-    uploadImage.className = currentEffect['class'];
-    uploadImage.style.filter = `${currentEffect['style']}`;
   } else {
     effectLevel.classList.remove('hidden');
-    uploadImage.className = currentEffect['class'];
-    uploadImage.style.filter = `${currentEffect['style']}(${currentEffect['max']}${currentEffect['dimension']})`;
-    effectLevelConteiner.noUiSlider.updateOptions({
-      range: {
-        min: currentEffect['min'],
-        max: currentEffect['max'],
-      },
-      start: currentEffect['max'],
-      step: currentEffect['step'],
-    });
-    effectLevelConteiner.noUiSlider.set(currentEffect['max']);
+    uploadImage.style.filter = `currentEffect['style'](${currentEffect['max']}${currentEffect['dimension']})`;
+    updateSlider();
   }
 };
 
 const onSliderUpdate = () => {
-  const currentEffectId = searchIdEffects();
+  const currentEffectId = uploadImage.id;
   const currentEffect = EFFECTS[currentEffectId];
-  const r = effectLevelConteiner.noUiSlider.get();
-  effectLevelValue.value = r;
-  uploadImage.style.filter = `${currentEffect['style']}(${r}${currentEffect['dimension']})`;
+  const sliderValue = effectLevelConteiner.noUiSlider.get();
+  effectLevelValue.value = sliderValue;
+  uploadImage.style.filter = `${currentEffect['style']}(${sliderValue}${currentEffect['dimension']})`;
 };
 
 const addsFilterOnImage = () => {
