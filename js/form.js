@@ -1,5 +1,7 @@
 import {isEscapeKey} from './util.js';
 import {validatetag, pristine} from './validatetag.js';
+import {scaleControlImageAdd, scaleControlImageRemove} from './scale.js';
+import {addsFilterOnImage, removeFilterOnImage} from './effects.js';
 const form = document.querySelector('.img-upload__form');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const body = document.body;
@@ -49,13 +51,12 @@ const show = () => {
   //Закрытие модального окна на кнопку
   closeOverlayButton.addEventListener('click', (evt) => {
     evt.preventDefault();
-    form.reset();
-    pristine.reset();
-    uploadOverlay.classList.add('hidden');
-    body.classList.remove('modal-open');
+    closeOverlay();
   });
 
   validatetag();
+  scaleControlImageAdd();
+  addsFilterOnImage();
 };
 
 //Обьявление декларативной функции closeOverlay, чтобы заработал removeEventListener
@@ -65,6 +66,8 @@ function closeOverlay () {
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
+  scaleControlImageRemove();
+  removeFilterOnImage();
 }
 
 const openOverlay = () => {
