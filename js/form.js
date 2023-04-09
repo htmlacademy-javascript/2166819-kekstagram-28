@@ -2,6 +2,7 @@ import {isEscapeKey} from './util.js';
 import {pristine} from './validatetag.js';
 import {scaleControlImageAdd, scaleControlImageRemove} from './scale.js';
 import {addsFilterOnImage, removeFilterOnImage} from './effects.js';
+import {openUploadImage} from './upload-image.js';
 const form = document.querySelector('.img-upload__form');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const body = document.body;
@@ -73,6 +74,7 @@ function closeOverlay () {
 
 const openOverlay = () => {
   uploadFile.addEventListener('change', show);
+  openUploadImage();
 };
 
 export {openOverlay, closeOverlay};
