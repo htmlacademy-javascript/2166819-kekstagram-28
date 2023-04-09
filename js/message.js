@@ -1,11 +1,16 @@
 import {isEscapeKey} from './util.js';
+import {onDocumentKeydown} from './form.js';
+
 const successMessange = document.querySelector('#success').content.querySelector('.success');
 const errorMessange = document.querySelector('#error').content.querySelector('.error');
 const body = document.body;
 
-const onDocumentKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
+const onMessangeKeydown = (evt) => {
+  if (isEscapeKey(evt) ||
+  evt.target.matches('.success__button') ||
+  evt.target.matches('.success') ||
+  evt.target.matches('.error__button') ||
+  evt.target.matches('.error')) {
     closeMessange();
   }
 };
@@ -13,23 +18,16 @@ const onDocumentKeydown = (evt) => {
 const showMessangeSuccess = () => {
   const successElement = successMessange.cloneNode(true);
   body.appendChild(successElement);
-  document.addEventListener('keydown', onDocumentKeydown);
-  const closeButton = successElement.querySelector('.success__button');
-  closeButton.addEventListener('click', (evt) => {
-    evt.preventDefault();
-    closeMessange();
-  });
+  document.addEventListener('keydown', onMessangeKeydown);
+  successElement.addEventListener('click', onMessangeKeydown);
 };
 
 const showMessangeError = () => {
   const errorElement = errorMessange.cloneNode(true);
   body.appendChild(errorElement);
-  document.addEventListener('keydown', onDocumentKeydown);
-  const closeButton = errorElement.querySelector('.error__button');
-  closeButton.addEventListener('click', (evt) => {
-    evt.preventDefault();
-    closeMessange();
-  });
+  document.removeEventListener('keydown', onDocumentKeydown);
+  document.addEventListener('keydown', onMessangeKeydown);
+  errorElement.addEventListener('click', onMessangeKeydown);
 };
 
 function closeMessange () {
@@ -41,7 +39,8 @@ function closeMessange () {
   if (errorMessangeShowed) {
     errorMessangeShowed.remove();
   }
-  document.removeEventListener('keydown', onDocumentKeydown);
+  document.removeEventListener('keydown', onMessangeKeydown);
+  document.addEventListener('keydown', onDocumentKeydown);
 }
 
 export {showMessangeSuccess, showMessangeError};

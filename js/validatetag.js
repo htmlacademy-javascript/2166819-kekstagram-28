@@ -1,5 +1,5 @@
 import {sendData} from './api.js';
-import {showMessangeSuccess, showMessangeError} from './messange.js';
+import {showMessangeSuccess, showMessangeError} from './message.js';
 import {blockSubmitButton, unblockSubmitButton} from './button-submit.js';
 
 //Максимальное кол-во хештегов
@@ -63,11 +63,11 @@ const setUserFormSubmit = (onSuccess) => {
         .then(()=> {
           showMessangeSuccess();
           onSuccess();
-          unblockSubmitButton();
         })
         .catch(() => {
           showMessangeError();
-        });
+        })
+        .finally(unblockSubmitButton);
     }
   });
 };
