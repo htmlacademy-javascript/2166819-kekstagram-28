@@ -77,4 +77,4 @@ const openOverlay = () => {
   openUploadImage();
 };
 
-export {openOverlay, closeOverlay};
+export {openOverlay, closeOverlay, onDocumentKeydown};
