@@ -1,3 +1,6 @@
+import {sendData} from './api.js';
+import {showMessangeSuccess, showMessangeError} from './message.js';
+import {blockSubmitButton, unblockSubmitButton} from './button-submit.js';
 
 //Максимальное кол-во хештегов
 const MAX_TAGS = 5;
@@ -45,19 +48,28 @@ const pristine = new Pristine(form, {
   errorTextParent: 'img-upload__field-wrapper',
 });
 
-const validatetag = () => {
-  pristine.addValidator(textNewHashtags, checkRegExpHashtag, ERROR_TEXT_REG_EXP);
-  pristine.addValidator(textNewHashtags, checkUniqueHashtags, ERROR_TEXT_NO_REPIT);
-  pristine.addValidator(textNewHashtags, checkMaxHashtagsCount, ERROR_TEXT_MAX_TAGS);
-};
+pristine.addValidator(textNewHashtags, checkRegExpHashtag, ERROR_TEXT_REG_EXP);
+pristine.addValidator(textNewHashtags, checkUniqueHashtags, ERROR_TEXT_NO_REPIT);
+pristine.addValidator(textNewHashtags, checkMaxHashtagsCount, ERROR_TEXT_MAX_TAGS);
 
 
-const formSubmit = (evt) => {
-  if (!pristine.validate()) {
+const setUserFormSubmit = (onSuccess) => {
+  form.addEventListener('submit', (evt) => {
     evt.preventDefault();
-  }
+    const isValid = pristine.validate();
+    if (isValid) {
+      blockSubmitButton();
+      sendData(new FormData(evt.target))
+        .then(()=> {
+          showMessangeSuccess();
+          onSuccess();
+        })
+        .catch(() => {
+          showMessangeError();
+        })
+        .finally(unblockSubmitButton);
+    }
+  });
 };
 
-form.addEventListener('submit', formSubmit);
-
-export {validatetag, pristine};
+export {pristine, setUserFormSubmit};

@@ -83,7 +83,7 @@ const onFilterChange = (evt) => {
     effectLevel.classList.add('hidden');
   } else {
     effectLevel.classList.remove('hidden');
-    uploadImage.style.filter = `currentEffect['style'](${currentEffect['max']}${currentEffect['dimension']})`;
+    uploadImage.style.filter = `${currentEffect.style}(${currentEffect.max}${currentEffect.dimension})`;
     updateSlider(currentEffect);
   }
 };
@@ -93,12 +93,13 @@ const onSliderUpdate = () => {
   const currentEffect = EFFECTS[currentEffectId];
   const sliderValue = effectLevelConteiner.noUiSlider.get();
   effectLevelValue.value = sliderValue;
-  uploadImage.style.filter = `${currentEffect['style']}(${sliderValue}${currentEffect['dimension']})`;
+  uploadImage.style.filter = `${currentEffect.style}(${sliderValue}${currentEffect.dimension})`;
 };
 
 const addsFilterOnImage = () => {
   uploadImage.className = EFFECTS['effect-none']['class'];
   uploadImage.style.filter = EFFECTS['effect-none']['style'];
+  uploadImage.id = 'effect-none';
   effectLevel.classList.add('hidden');
   effectsList.addEventListener('change', onFilterChange);
   noUiSlider.create(effectLevelConteiner, {
@@ -114,6 +115,8 @@ const addsFilterOnImage = () => {
 };
 
 const removeFilterOnImage = () => {
+  effectLevelConteiner.noUiSlider.off('update', onSliderUpdate);
+  effectLevelConteiner.noUiSlider.destroy();
   effectsList.removeEventListener('change', onFilterChange);
 };
 

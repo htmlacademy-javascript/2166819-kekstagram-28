@@ -1,14 +1,17 @@
 import {isEscapeKey} from './util.js';
-import {validatetag, pristine} from './validatetag.js';
+import {pristine} from './validatetag.js';
 import {scaleControlImageAdd, scaleControlImageRemove} from './scale.js';
 import {addsFilterOnImage, removeFilterOnImage} from './effects.js';
+import {openUploadImage} from './upload-image.js';
 const form = document.querySelector('.img-upload__form');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const body = document.body;
 const uploadFile = document.querySelector('#upload-file');
 const closeOverlayButton = document.querySelector('#upload-cancel');
+
 //Поле для хештегов
 const textNewHashtags = document.querySelector('.text__hashtags');
+
 //Поле для комментария
 const textNewDescription = document.querySelector('.text__description');
 
@@ -54,7 +57,6 @@ const show = () => {
     closeOverlay();
   });
 
-  validatetag();
   scaleControlImageAdd();
   addsFilterOnImage();
 };
@@ -72,7 +74,7 @@ function closeOverlay () {
 
 const openOverlay = () => {
   uploadFile.addEventListener('change', show);
-
+  openUploadImage();
 };
 
-export {openOverlay};
+export {openOverlay, closeOverlay, onDocumentKeydown};
