@@ -5,6 +5,7 @@ const picturesContainer = document.querySelector('.pictures');
 const similarListFragment = document.createDocumentFragment();
 
 const generatedPicture = (data) => {
+  picturesContainer.querySelectorAll('.picture').forEach((item) => item.remove());
   data.forEach(({likes, comments, url, id}) => {
   //Создание копии блока template picture
     const pictureElement = template.cloneNode(true);

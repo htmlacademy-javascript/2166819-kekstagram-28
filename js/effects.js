@@ -93,7 +93,9 @@ const onSliderUpdate = () => {
   const currentEffect = EFFECTS[currentEffectId];
   const sliderValue = effectLevelConteiner.noUiSlider.get();
   effectLevelValue.value = sliderValue;
-  uploadImage.style.filter = `${currentEffect.style}(${sliderValue}${currentEffect.dimension})`;
+  if(currentEffect) {
+    uploadImage.style.filter = `${currentEffect.style}(${sliderValue}${currentEffect.dimension})`;
+  }
 };
 
 const addsFilterOnImage = () => {
