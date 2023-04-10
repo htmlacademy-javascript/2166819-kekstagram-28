@@ -6,8 +6,13 @@ const errorMessange = document.querySelector('#error').content.querySelector('.e
 const body = document.body;
 
 const onMessangeKeydown = (evt) => {
-  if (isEscapeKey(evt) ||
-  evt.target.matches('.success__button') ||
+  if (isEscapeKey(evt)) {
+    closeMessange();
+  }
+};
+
+const onMessangeClick = (evt) => {
+  if (evt.target.matches('.success__button') ||
   evt.target.matches('.success') ||
   evt.target.matches('.error__button') ||
   evt.target.matches('.error')) {
@@ -15,11 +20,12 @@ const onMessangeKeydown = (evt) => {
   }
 };
 
+
 const showMessangeSuccess = () => {
   const successElement = successMessange.cloneNode(true);
   body.appendChild(successElement);
   document.addEventListener('keydown', onMessangeKeydown);
-  successElement.addEventListener('click', onMessangeKeydown);
+  successElement.addEventListener('click', onMessangeClick);
 };
 
 const showMessangeError = () => {
@@ -27,7 +33,7 @@ const showMessangeError = () => {
   body.appendChild(errorElement);
   document.removeEventListener('keydown', onDocumentKeydown);
   document.addEventListener('keydown', onMessangeKeydown);
-  errorElement.addEventListener('click', onMessangeKeydown);
+  errorElement.addEventListener('click', onMessangeClick);
 };
 
 function closeMessange () {
