@@ -20,7 +20,6 @@ const onMessangeClick = (evt) => {
   }
 };
 
-
 const showMessangeSuccess = () => {
   const successElement = successMessange.cloneNode(true);
   body.appendChild(successElement);

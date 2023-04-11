@@ -1,7 +1,7 @@
-import './validatetag.js';
+import './validate-tag.js';
 import {effectsMini} from './effects-mini.js';
 import {init, getFilteredPictures} from './filter.js';
-import {setUserFormSubmit} from './validatetag.js';
+import {setUserFormSubmit} from './validate-tag.js';
 import {openOverlay, closeOverlay} from './form.js';
 import {getData} from './api.js';
 import {generatedPicture} from './miniature.js';
@@ -20,7 +20,5 @@ try {
 }
 
 openOverlay();
-
 setUserFormSubmit(closeOverlay);
 effectsMini();
-

@@ -1,9 +1,6 @@
-//Шаг
 const STEP = 25;
-
 const MAX_VALUE = 100;
 const MIN_VALUE = 25;
-
 const PERSENT = 100;
 
 //Кнопки увеличения и уменьшения изображения
@@ -39,16 +36,16 @@ const onButtonMinus = () => {
   }
 };
 
-const scaleControlImageAdd = () => {
+const addScaleControlImage = () => {
   scaleValue.value = `${MAX_VALUE}%`;
   uploadImage.style.transform = 'scale(1)';
   buttonPlus.addEventListener('click', onButtonPlus);
   buttonMinus.addEventListener('click', onButtonMinus);
 };
 
-const scaleControlImageRemove = () => {
+const removeScaleControlImage = () => {
   buttonPlus.removeEventListener('click', onButtonPlus);
   buttonMinus.removeEventListener('click', onButtonMinus);
 };
 
-export {scaleControlImageAdd, scaleControlImageRemove};
+export {addScaleControlImage, removeScaleControlImage};

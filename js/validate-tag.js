@@ -19,26 +19,26 @@ const form = document.querySelector('.img-upload__form');
 //Поле для хештегов
 const textNewHashtags = document.querySelector('.text__hashtags');
 
-const lineHashtags = (value) => value.toLowerCase().trim().split(' ');
+const getLineHashtags = (value) => value.toLowerCase().trim().split(' ');
 
 const checkRegExpHashtag = (value) => {
   if (!value) {
     return true;
   }
 
-  const hashtags = lineHashtags(value);
+  const hashtags = getLineHashtags(value);
   return hashtags.every((tag) => HASHTAGS_SYMBOLS.test(tag));
 };
 
 const checkUniqueHashtags = (value) => {
-  const hashtags = lineHashtags(value);
+  const hashtags = getLineHashtags(value);
   const lineHashtagsSet = new Set(hashtags);
 
   return lineHashtagsSet.size === hashtags.length;
 };
 
 const checkMaxHashtagsCount = (value) => {
-  const hashtags = lineHashtags(value);
+  const hashtags = getLineHashtags(value);
 
   return hashtags.length <= MAX_TAGS;
 };
