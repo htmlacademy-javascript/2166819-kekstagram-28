@@ -40,7 +40,7 @@ const showСomments = (comments) => {
   };
 };
 
-const show = (data) => {
+const showBigPicture = (data) => {
   userModalBigPicture.classList.remove('hidden');
   userModalBigPicture.querySelector('.big-picture__img img').src = data.url;
   userModalBigPicture.querySelector('.likes-count').textContent = data.likes;
@@ -81,10 +81,9 @@ const openBigPicture = (picture) => {
     }
 
     const picturesImg = picture.find(
-      (item) => item.id === Number(picturesWindow.dataset.pictureId)
-    );
+      (item) => item.id === Number(picturesWindow.dataset.pictureId));
 
-    show(picturesImg);
+    showBigPicture(picturesImg);
   });
 };
 

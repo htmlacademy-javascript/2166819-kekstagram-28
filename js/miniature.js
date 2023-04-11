@@ -21,7 +21,6 @@ const generatedPicture = (data) => {
     //Вставляем полученное изображение в конец блока
     similarListFragment.appendChild(pictureElement);
   });
-
   picturesContainer.appendChild(similarListFragment);
 };
 export {generatedPicture};

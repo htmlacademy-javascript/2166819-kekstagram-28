@@ -1,18 +1,14 @@
 import {isEscapeKey} from './util.js';
-import {pristine} from './validatetag.js';
-import {scaleControlImageAdd, scaleControlImageRemove} from './scale.js';
+import {pristine} from './validate-tag.js';
+import {addScaleControlImage, removeScaleControlImage} from './scale.js';
 import {addsFilterOnImage, removeFilterOnImage} from './effects.js';
 import {openUploadImage} from './upload-image.js';
+const body = document.body;
 const form = document.querySelector('.img-upload__form');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
-const body = document.body;
 const uploadFile = document.querySelector('#upload-file');
 const closeOverlayButton = document.querySelector('#upload-cancel');
-
-//Поле для хештегов
 const textNewHashtags = document.querySelector('.text__hashtags');
-
-//Поле для комментария
 const textNewDescription = document.querySelector('.text__description');
 
 //Переменная для удаления обработчика событий
@@ -23,7 +19,7 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-const show = () => {
+const showFormWindow = () => {
   //Удаление класса hidden
   uploadOverlay.classList.remove('hidden');
 
@@ -57,7 +53,7 @@ const show = () => {
     closeOverlay();
   });
 
-  scaleControlImageAdd();
+  addScaleControlImage();
   addsFilterOnImage();
 };
 
@@ -68,12 +64,12 @@ function closeOverlay () {
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
-  scaleControlImageRemove();
+  removeScaleControlImage();
   removeFilterOnImage();
 }
 
 const openOverlay = () => {
-  uploadFile.addEventListener('change', show);
+  uploadFile.addEventListener('change', showFormWindow);
   openUploadImage();
 };
 

@@ -1,6 +1,5 @@
 const SORT_NUMBER = 0.5;
 const PICTURE_COUNT = 10;
-
 const Filter = {
   DEFAULT: 'filter-default',
   RANDOM: 'filter-random',
@@ -9,7 +8,6 @@ const Filter = {
 const imageFilters = document.querySelector('.img-filters');
 const imageFiltersForm = document.querySelector('.img-filters__form');
 const filterButtons = imageFiltersForm.querySelectorAll('.img-filters__button');
-
 
 let currentFilter = Filter.DEFAULT;
 let pictures = [];

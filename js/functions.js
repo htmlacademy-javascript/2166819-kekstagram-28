@@ -53,4 +53,4 @@ function getOriginalString(stringOriginal, length, stringAdditional) {
   return total + stringOriginal;
 }
 
-getOriginalString('q', 4, 'we'); //"wweq"
+getOriginalString('q', 4, 'we');
