@@ -19,7 +19,7 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-const showFormWindow = () => {
+const onShowFormWindow = () => {
   //Удаление класса hidden
   uploadOverlay.classList.remove('hidden');
 
@@ -69,7 +69,7 @@ function closeOverlay () {
 }
 
 const openOverlay = () => {
-  uploadFile.addEventListener('change', showFormWindow);
+  uploadFile.addEventListener('change', onShowFormWindow);
   openUploadImage();
 };
 
